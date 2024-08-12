@@ -2,7 +2,7 @@ import { auth } from "../firebase/config";
 
 const Message = ({ data }) => {
   // oturumu açık olan kullanıcın id'si mesajı atan kullanıcın id'sine eşit > sadece mesaj içeriğini ekrana bas
-  if (auth.currentUser.uid === data.author.id)
+  if (auth.currentUser?.uid === data.author.id)
     return <p className="msg-user">{data.text}</p>;
 
   // eşit değilse > kullanıcı bilgisi + mesaj içeriğini bas

@@ -3,6 +3,9 @@ import {
   serverTimestamp,
   onSnapshot,
   collection,
+  query,
+  where,
+  orderBy,
 } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import { useEffect, useState } from "react";
@@ -24,7 +27,7 @@ const ChatPage = ({ room, setRoom }) => {
       room,
       author: {
         id: auth.currentUser.uid,
-        name: auth.currentUser.displayName,
+        name: auth.currentUser?.displayName,
         photo: auth.currentUser.photoURL,
       },
       createdAt: serverTimestamp(),
@@ -38,9 +41,14 @@ const ChatPage = ({ room, setRoom }) => {
   useEffect(() => {
     // abone olunacak koleksiyonun referansını al
     const messagesCol = collection(db, "messages");
+    const q = query(
+      messagesCol,
+      where("room", "==", room),
+      orderBy("createdAt", "asc")
+    );
 
     // onSnapshot anlık olarak koleksiyondaki  değişimleri izler koleksiyon her değiştiğinde verdiğimiz fonksiyon ile koleksiyondaki güncel dökümanlara erişiriz
-    onSnapshot(messagesCol, (snapshot) => {
+    onSnapshot(q, (snapshot) => {
       // verilerin geçici olarak tutulduğu dizi
       const tempMsg = [];
 

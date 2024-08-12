@@ -7,7 +7,7 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("TOKEN"));
   const [room, setRoom] = useState(null);
 
-       if (!isAuth) return <LoginPage setIsAuth={setIsAuth} />;
+  if (!isAuth) return <LoginPage setIsAuth={setIsAuth} />;
 
   // kullanıcının yetkisi varsa:
   return (
