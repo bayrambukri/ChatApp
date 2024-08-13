@@ -1,11 +1,11 @@
 // Import the functions you need from the SDKs you need
- import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB_ryacCRiUUstbRdH-DhQ1yRyj-5PwUjU",
+  apiKey: "key",
   authDomain: "hi-chat-da6a0.firebaseapp.com",
   projectId: "hi-chat-da6a0",
   storageBucket: "hi-chat-da6a0.appspot.com",
@@ -24,4 +24,3 @@ export const provider = new GoogleAuthProvider();
 
 // veritabanı hizmetinin referansını al
 export const db = getFirestore(app);
- 
